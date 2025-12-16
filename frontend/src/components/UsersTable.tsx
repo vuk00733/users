@@ -7,7 +7,7 @@ import { DeleteDialog } from "./DeleteDialog";
 import { useUsers } from "../hooks/useUsers";
 
 export const UsersTable = () => {
-	const { rows, total, loading, query, updateParams } = useUsers();
+	const { rows, total, loading, query, updateParams, refresh } = useUsers();
 	const [deleteId, setDeleteId] = useState<number | null>(null);
 
 	const paginationModel = useMemo(
@@ -63,11 +63,13 @@ export const UsersTable = () => {
 				open={!!deleteId}
 				onClose={() => setDeleteId(null)}
 				onConfirm={() => {
-					if (deleteId === null) return;
-					deleteUser(deleteId);
+				if (deleteId === null) return;
+				deleteUser(deleteId).finally(() => {
+					refresh();
 					setDeleteId(null);
-				}}
-			/>
+				});
+			}}
+		/>
 		</>
 	);
 };

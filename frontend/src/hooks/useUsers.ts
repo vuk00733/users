@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { fetchUsers } from "../api/users";
 import type { User, UsersQuery } from "../types/users";
@@ -22,15 +22,20 @@ export const useUsers = () => {
 		[params],
 	);
 
-	useEffect(() => {
+	const fetchData = useCallback(async () => {
 		setLoading(true);
-		fetchUsers(query)
-			.then(({ data, total }) => {
-				setRows(data);
-				setTotal(total);
-			})
-			.finally(() => setLoading(false));
+		try {
+			const { data, total } = await fetchUsers(query);
+			setRows(data);
+			setTotal(total);
+		} finally {
+			setLoading(false);
+		}
 	}, [query]);
+
+	useEffect(() => {
+		void fetchData();
+	}, [fetchData]);
 
 	const updateParams = (updates: Partial<UsersQuery>) => {
 		setParams((prev) => {
@@ -52,5 +57,7 @@ export const useUsers = () => {
 		});
 	};
 
-	return { rows, total, loading, query, updateParams };
+	const refresh = () => void fetchData();
+
+	return { rows, total, loading, query, updateParams, refresh };
 };
