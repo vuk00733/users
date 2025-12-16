@@ -1,0 +1,119 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+      integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>JSON Server</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="container">
+        <nav>
+          <ul>
+            <li class="title">
+              JSON Server
+            </li>
+            <li>
+              <a href="https://github.com/users/typicode/sponsorship">
+                <i class="fas fa-heart"></i>GitHub Sponsors
+              </a>
+            </li>
+            <li>
+              <a href="https://my-json-server.typicode.com">
+                <i class="fas fa-burn"></i>User Management System
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div class="main-content">
+
+        <div class="endpoint-docs">
+          <h2>API Endpoints</h2>
+
+          <div class="endpoint-section">
+            <h3>GET /countries</h3>
+            <p>Retrieve all countries</p>
+            <code>GET http://localhost:1008/countries</code>
+          </div>
+
+          <div class="endpoint-section">
+            <h3>GET /roles</h3>
+            <p>Retrieve all roles</p>
+            <code>GET http://localhost:1008/roles</code>
+          </div>
+
+          <div class="endpoint-section">
+            <h3>GET /users</h3>
+            <p>Retrieve users with filtering, sorting, and pagination</p>
+            <div class="query-params">
+              <p><strong>Query Parameters:</strong></p>
+              <p>Page number</p> <code>_page</code> 
+              <p>Items per page</p> <code>_limit</code> 
+              <p>Total items (returned in response header)</p> <code>X-Total-Count</code>
+              <p>Sort by field (e.g., lastName)</p> <code>_sort</code> 
+              <p>Sort order (asc/desc)</p> <code>_order</code> 
+              <p>Full-text search</p> <code>q</code> 
+              <p>Filter by country ID</p> <code>country.id</code> 
+              <p>Filter by role name</p> <code>role.name</code> 
+            </div>
+            <p><strong>Example:</strong></p>
+            <code>GET http://localhost:1008/users?_page=1&_limit=20&_sort=lastName&_order=asc</code>
+          </div>
+
+          <div class="endpoint-section">
+            <h3>DELETE /users/:id</h3>
+            <p>Delete a specific user</p>
+            <code>DELETE http://localhost:1008/users/1</code>
+          </div>
+        </div>
+
+        <div class="container">
+
+          <div id="resources"></div>
+
+          <p>
+            To access and modify resources, you can use any HTTP method:
+          </p>
+          <p>
+            <code>GET</code>
+            <code>POST</code>
+            <code>PUT</code>
+            <code>PATCH</code>
+            <code>DELETE</code>
+            <code>OPTIONS</code>
+          </p>
+
+          <!-- <div id="custom-routes"></div> -->
+
+          <h1>Documentation</h1>
+          <p>
+            <a href="/README.html">
+              README
+            </a>
+          </p>
+        </div>
+
+        
+      </div>
+    </main>
+
+    <!-- <footer>
+      <div class="container">
+        <p>
+          To replace this page, create a
+          <code>./public/index.html</code> file.
+        </p>
+      </div>
+    </footer> -->
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>README - JSON Server API</title>
+    <style>
+      .readme-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+      .readme-container h1 {
+        margin-top: 2rem;
+        font-size: 2rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.5rem;
+      }
+      .readme-container h2 {
+        margin-top: 2rem;
+        font-size: 1.5rem;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 0.3rem;
+      }
+      .readme-container h3 {
+        margin-top: 1.5rem;
+        font-size: 1.2rem;
+      }
+      .readme-container pre {
+        background: #e5e9f0;
+        padding: 1rem;
+        border-radius: 0.3rem;
+        overflow-x: auto;
+      }
+      .readme-container pre code {
+        background: none;
+        padding: 0;
+        margin: 0;
+      }
+      .readme-container ul {
+        padding-left: 1.5rem;
+      }
+      .readme-container li {
+        list-style-type: disc;
+        margin-bottom: 0.5rem;
+      }
+      .readme-container ol li {
+        list-style-type: decimal;
+      }
+      .back-link {
+        display: inline-block;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="readme-container">
+      <a href="/" class="back-link">&larr; Back to Home</a>
+
+      <h1>Minimal JSON Server API</h1>
+
+      <h2>Prerequisites</h2>
+      <ul>
+        <li>Node.js version 16.x or higher</li>
+        <li>npm or yarn</li>
+      </ul>
+
+      <h2>Installation</h2>
+      <p>Install dependencies:</p>
+      <pre><code>npm install</code></pre>
+
+      <h2>Usage</h2>
+
+      <h3>Single Command (Recommended)</h3>
+      <p>Run seeding and start the server in one command:</p>
+      <pre><code>npm run start</code></pre>
+      <p>This will:</p>
+      <ol>
+        <li>Generate 1,000 users, 100 countries, and predefined roles</li>
+        <li>Write data to <code>db.json</code></li>
+        <li>Start the JSON Server on port 1008</li>
+      </ol>
+
+      <h3>Individual Commands</h3>
+      <p><strong>Generate/Seed Data:</strong></p>
+      <pre><code>npm run seed</code></pre>
+
+      <p><strong>Start Server:</strong></p>
+      <pre><code>npm run dev</code></pre>
+
+      <p><strong>Clean Database:</strong></p>
+      <pre><code>npm run clean</code></pre>
+
+      <h2>API Endpoints</h2>
+      <p>Once the server is running, the API will be available at <code>http://localhost:1008</code></p>
+
+      <h3>Users</h3>
+      <ul>
+        <li><code>GET /users</code> - Get all users</li>
+        <li><code>GET /users/:id</code> - Get a specific user</li>
+        <li><code>POST /users</code> - Create a new user</li>
+        <li><code>PUT /users/:id</code> - Update a user</li>
+        <li><code>PATCH /users/:id</code> - Partially update a user</li>
+        <li><code>DELETE /users/:id</code> - Delete a user</li>
+      </ul>
+
+      <h3>Roles</h3>
+      <ul>
+        <li><code>GET /roles</code> - Get all roles</li>
+        <li><code>GET /roles/:id</code> - Get a specific role</li>
+        <li><code>POST /roles</code> - Create a new role</li>
+        <li><code>PUT /roles/:id</code> - Update a role</li>
+        <li><code>PATCH /roles/:id</code> - Partially update a role</li>
+        <li><code>DELETE /roles/:id</code> - Delete a role</li>
+      </ul>
+
+      <h3>Countries</h3>
+      <ul>
+        <li><code>GET /countries</code> - Get all countries</li>
+        <li><code>GET /countries/:id</code> - Get a specific country</li>
+        <li><code>POST /countries</code> - Create a new country</li>
+        <li><code>PUT /countries/:id</code> - Update a country</li>
+        <li><code>PATCH /countries/:id</code> - Partially update a country</li>
+        <li><code>DELETE /countries/:id</code> - Delete a country</li>
+      </ul>
+
+      <h3>Query Examples</h3>
+      <ul>
+        <li><code>GET /users?country.id=1</code> - Filter users by country ID</li>
+        <li><code>GET /users?country.name=United States</code> - Filter users by country name</li>
+        <li><code>GET /users?role.name=Administrator</code> - Filter users by role</li>
+        <li><code>GET /users?_limit=10</code> - Limit results</li>
+        <li><code>GET /users?_page=1&_limit=20</code> - Pagination (inspect <code>X-Total-Count</code> header for totals)</li>
+        <li><code>GET /users?_sort=lastName&_order=asc</code> - Sort results</li>
+      </ul>
+
+      <h2>Testing</h2>
+
+      <h3>Using curl</h3>
+      <pre><code># Get all users
+curl http://localhost:1008/users
+
+# Get a specific user
+curl http://localhost:1008/users/1
+
+# Get all countries
+curl http://localhost:1008/countries
+
+# Delete a user
+curl -X DELETE http://localhost:1008/users/1
+
+# Create a new user
+curl -X POST http://localhost:1008/users \
+  -H "Content-Type: application/json" \
+  -d '{"firstName":"John","lastName":"Doe","email":"john@example.com","countryId":1}'</code></pre>
+
+      <h3>Using Browser</h3>
+      <p>Simply navigate to:</p>
+      <ul>
+        <li><code>http://localhost:1008/users</code> - View all users</li>
+        <li><code>http://localhost:1008/countries</code> - View all countries</li>
+        <li><code>http://localhost:1008/users/1</code> - View user with ID 1</li>
+      </ul>
+
+      <h2>Data Structure</h2>
+
+      <h3>User</h3>
+      <pre><code>{
+  "id": 1,
+  "firstName": "John",
+  "lastName": "Doe",
+  "email": "john.doe@example.com",
+  "avatar": "https://avatars.githubusercontent.com/u/74488724",
+  "country": {
+    "id": 1,
+    "name": "United States"
+  },
+  "role": {
+    "id": 1,
+    "name": "Administrator"
+  }
+}</code></pre>
+
+      <h3>Country</h3>
+      <pre><code>{
+  "id": 1,
+  "name": "United States"
+}</code></pre>
+
+      <h3>Role</h3>
+      <pre><code>{
+  "id": 1,
+  "name": "Administrator"
+}</code></pre>
+    </div>
+  </body>
+</html>

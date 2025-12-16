@@ -1,0 +1,30 @@
+{
+  "name": "minimal-json-server-api",
+  "version": "1.0.0",
+  "description": "Minimal JSON Server API with fake data generation",
+  "main": "index.js",
+  "scripts": {
+    "seed": "ts-node scripts/seed.ts",
+    "dev": "json-server --watch db.json --port 1008",
+    "start": "npm run seed && json-server --watch db.json --port 1008",
+    "clean": "rimraf db.json"
+  },
+  "keywords": [
+    "json-server",
+    "api",
+    "faker"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^8.3.1",
+    "json-server": "^0.17.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.6",
+    "rimraf": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.3.3"
+  }
+}
+
