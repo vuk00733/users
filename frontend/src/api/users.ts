@@ -4,7 +4,7 @@ import type { Country, Role, User, UsersQuery } from "../types/users";
 export type { Country, Role, User, UsersQuery } from "../types/users";
 
 export const api = axios.create({
-	baseURL: "http://localhost:3000",
+	baseURL: "http://localhost:1008",
 });
 
 export const fetchUsers = async (params: UsersQuery) => {

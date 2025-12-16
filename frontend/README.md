@@ -25,7 +25,7 @@ It shows the users table, allows filtering by search/country/role, and lets you 
    The app runs on `http://localhost:5173` by default.
 
 3. **Connect to backend**
-   - The frontend expects the backend JSON server at `http://localhost:3000`.
+   - The frontend expects the backend JSON server at `http://localhost:1008`.
    - Ensure the backend is running before you interact with the users table.
 
 ## Useful scripts
