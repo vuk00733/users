@@ -60,8 +60,16 @@ export const Filters = ({ query, onChange }: Props) => {
 	const [roles, setRoles] = useState<Role[]>([]);
 
 	useEffect(() => {
-		fetchCountries().then(setCountries);
-		fetchRoles().then(setRoles);
+		fetchCountries().then((data) =>
+			setCountries(
+				[...data].sort((a, b) => a.name.localeCompare(b.name)),
+			),
+		);
+		fetchRoles().then((data) =>
+			setRoles(
+				[...data].sort((a, b) => a.name.localeCompare(b.name)),
+			),
+		);
 	}, []);
 
 	const countryOptions = countries.map((country) => ({
