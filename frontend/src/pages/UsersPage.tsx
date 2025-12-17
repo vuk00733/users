@@ -34,7 +34,7 @@ export const UsersPage = () => {
 							overflow: "hidden",
 						}}
 					>
-						<Box sx={{ height: 600 }}>
+						<Box sx={{ height: 630 }}>
 							<UsersTable />
 						</Box>
 					</Paper>
