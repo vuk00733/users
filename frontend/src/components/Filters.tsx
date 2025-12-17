@@ -1,4 +1,11 @@
-import { MenuItem, Stack, TextField } from "@mui/material";
+import {
+	IconButton,
+	InputAdornment,
+	MenuItem,
+	Stack,
+	TextField,
+} from "@mui/material";
+import ClearIcon from "@mui/icons-material/Clear";
 import { useEffect, useMemo, useState } from "react";
 import { fetchCountries, fetchRoles } from "../api/users";
 import type { Country, Role, UsersQuery } from "../types/users";
@@ -102,6 +109,22 @@ export const Filters = ({ query, onChange }: Props) => {
 				onChange={(e) => onChange({ search: e.target.value })}
 				sx={{ ...fieldSx, maxWidth: "100%" }}
 				fullWidth
+				slotProps={{
+					input: {
+						endAdornment: query.search ? (
+							<InputAdornment position="end">
+								<IconButton
+									onClick={() => onChange({ search: "" })}
+									edge="end"
+									aria-label="clear search"
+									size="small"
+								>
+									<ClearIcon fontSize="small" />
+								</IconButton>
+							</InputAdornment>
+						) : undefined,
+					},
+				}}
 			/>
 
 			<FilterSelect
